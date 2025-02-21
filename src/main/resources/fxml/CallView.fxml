@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="mts.controllers.CallController" spacing="10" alignment="CENTER">
+    <!-- Основная таблица звонков -->
+    <TableView fx:id="callTable" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID"/>
+            <TableColumn fx:id="cityCalledToColumn" text="Город вызова"/>
+            <TableColumn fx:id="phoneNumberColumn" text="Номер телефона"/>
+            <TableColumn fx:id="dateOfCallColumn" text="Дата вызова"/>
+            <TableColumn fx:id="callDurationColumn" text="Длительность вызова"/>
+        </columns>
+    </TableView>
+
+    <!-- Кнопки -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Добавить звонок" onAction="#addCall"/>
+        <Button text="Редактировать" onAction="#editCall"/>
+        <Button text="Удалить" onAction="#deleteCall"/>
+    </HBox>
+
+    <!-- Кнопка для расчета количества абонентов -->
+    <Button text="Расчет количества абонентов" onAction="#showSubscriberCalculationForm" alignment="CENTER"/>
+
+    <!-- Форма для добавления/редактирования звонка (сначала скрыта) -->
+    <VBox fx:id="addCallForm" visible="false" spacing="10" alignment="CENTER">
+        <!-- Выбор клиента -->
+        <ComboBox fx:id="clientComboBox" promptText="Выберите клиента" prefWidth="300"/>
+        <TextField fx:id="cityCalledToField" promptText="Город вызова"/>
+        <TextField fx:id="phoneNumberField" promptText="Номер телефона"/>
+        <DatePicker fx:id="dateOfCallField" promptText="Дата вызова" />
+        <TextField fx:id="timeOfCallField" promptText="Время вызова (чч:мм)" />
+        <TextField fx:id="callDurationField" promptText="Длительность (чч:мм:сс)"/>
+        <HBox spacing="10">
+            <Button text="Сохранить" onAction="#saveCall"/>
+            <Button text="Отмена" onAction="#cancel"/>
+        </HBox>
+    </VBox>
+    <!-- Кнопка для расчета количества абонентов -->
+    <!-- Форма для выбора месяца и города для расчета -->
+    <VBox fx:id="subscriberCalculationForm" visible="false" spacing="10" alignment="CENTER">
+        <TextField fx:id="cityForCalculationField" promptText="Город"/>
+
+        <!-- Комбо-бокс для выбора месяца -->
+        <ComboBox fx:id="monthForCalculationComboBox" promptText="Выберите месяц" prefWidth="200">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="January"/>
+                    <String fx:value="February"/>
+                    <String fx:value="March"/>
+                    <String fx:value="April"/>
+                    <String fx:value="May"/>
+                    <String fx:value="June"/>
+                    <String fx:value="July"/>
+                    <String fx:value="August"/>
+                    <String fx:value="September"/>
+                    <String fx:value="October"/>
+                    <String fx:value="November"/>
+                    <String fx:value="December"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Button text="Показать количество абонентов" onAction="#calculateSubscriberCount"/>
+        <Label fx:id="subscriberCountLabel" text="Количество абонентов: " visible="false"/>
+    </VBox>
+
+    <Button text="Назад в главное меню" onAction="#goBackToMainMenu" alignment="CENTER"/>
+</VBox>

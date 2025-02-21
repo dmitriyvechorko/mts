@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="mts.controllers.CostController" spacing="10" alignment="CENTER">
+    <!-- Основная таблица стоимости -->
+    <TableView fx:id="costTable" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID"/>
+            <TableColumn fx:id="dateColumn" text="Дата"/>
+            <TableColumn fx:id="settlementNameColumn" text="Населённый пункт"/>
+            <TableColumn fx:id="costPerMinColumn" text="Стоимость за минуту"/>
+            <TableColumn fx:id="preferentialCostColumn" text="Льготная стоимость"/>
+        </columns>
+    </TableView>
+
+    <!-- Кнопки -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Добавить стоимость" onAction="#addCost"/>
+        <Button text="Обновить" onAction="#editCost"/>
+        <Button text="Удалить" onAction="#deleteCost"/>
+    </HBox>
+
+    <!-- Кнопка для показа стоимости -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Показать стоимость на выбранную дату" onAction="#showDateField"/>
+    </HBox>
+
+    <!-- Поле для выбора даты (будет скрыто до нажатия кнопки) -->
+    <HBox fx:id="datePickerBox" spacing="10" alignment="CENTER" visible="false">
+        <Label text="Выберите дату:"/>
+        <DatePicker fx:id="dateField" promptText="Дата"/>
+        <Button text="Показать" onAction="#showCostByDate"/>
+    </HBox>
+
+    <!-- Форма для добавления стоимости (сначала скрыта) -->
+    <VBox fx:id="addCostForm" visible="false" spacing="10" alignment="CENTER">
+        <DatePicker fx:id="dateField" promptText="Дата"/>
+        <TextField fx:id="settlementNameField" promptText="Населённый пункт"/>
+        <TextField fx:id="costPerMinField" promptText="Стоимость за минуту"/>
+        <TextField fx:id="preferentialCostField" promptText="Льготная стоимость"/>
+
+        <HBox spacing="10">
+            <Button text="Сохранить" onAction="#saveCost"/>
+            <Button text="Отмена" onAction="#cancel"/>
+        </HBox>
+    </VBox>
+
+    <Button text="Назад в главное меню" onAction="#goBackToMainMenu" alignment="CENTER"/>
+</VBox>

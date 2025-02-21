@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="mts.controllers.MainController" spacing="10" alignment="CENTER">
+  <Label text="Главное меню" style="-fx-font-size: 50px;" />
+  <Button text="Управление клиентами" onAction="#openClientView" prefWidth="200" />
+  <Button text="Управление звонками" onAction="#openCallView" prefWidth="200" />
+  <Button text="Управление стоимостью" onAction="#openCostView" prefWidth="200" />
+  <Button text="Управление квитанциями" onAction="#openReceiptView" prefWidth="200" />
+</VBox>

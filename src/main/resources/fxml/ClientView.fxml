@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="mts.controllers.ClientController" spacing="10"
+      alignment="CENTER">
+    <!-- Основная таблица клиентов -->
+    <TableView fx:id="clientTable" prefWidth="600">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID"/>
+            <TableColumn fx:id="nameColumn" text="ФИО"/>
+            <TableColumn fx:id="addressColumn" text="Адрес"/>
+            <TableColumn fx:id="dateColumn" text="Дата регистрации"/>
+        </columns>
+    </TableView>
+
+    <!-- Кнопки -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Добавить клиента" onAction="#addClient"/>
+        <Button text="Обновить" onAction="#editClient"/>
+        <Button text="Удалить" onAction="#deleteClient"/>
+    </HBox>
+
+    <!-- Форма для добавления клиента (сначала скрыта) -->
+    <VBox fx:id="addClientForm" visible="false" spacing="10" alignment="CENTER">
+        <TextField fx:id="fullNameField" promptText="ФИО"/>
+        <TextField fx:id="addressField" promptText="Адрес"/>
+        <HBox spacing="10">
+            <Button text="Сохранить" onAction="#saveClient"/>
+            <Button text="Отмена" onAction="#cancel"/>
+        </HBox>
+
+    </VBox>
+    <Button text="Назад в главное меню" onAction="#goBackToMainMenu" alignment="CENTER"/>
+</VBox>
